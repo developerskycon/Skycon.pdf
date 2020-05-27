@@ -1,0 +1,37 @@
+﻿Following section demonstrates how to setting up the paths.
+<code-tab>
+    <pre lang="c#">
+using System;
+using Skycon.Pdf;
+
+void main(){
+
+    var _root = IO.Path.GetDirectoryName(Reflection.Assembly.GetExecutingAssembly().Location);
+
+    // WorkingDirectory = is the path for working on temp files
+    Common.WorkingDirectory = _root;
+
+    // C libraries for "wkhtmltopdf" and "ghstscript"
+    Common.WkHtmlToPdf_FullFileName = IO.Path.Combine(_root, "wkhtmltox.dll");
+    Common.GhostScript_FullFileName = IO.Path.Combine(_root, "gsdll64.dll");
+
+}
+</pre>
+    <pre lang="vb">
+Imports System
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim _root = IO.Path.GetDirectoryName(Reflection.Assembly.GetExecutingAssembly().Location)
+    
+    ' WorkingDirectory = is the path for working on temp files
+    Common.WorkingDirectory = _root
+    
+    ' C libraries for for "wkhtmltopdf" and "ghstscript"
+    Common.WkHtmlToPdf_FullFileName = IO.Path.Combine(_root, "wkhtmltox.dll")
+    Common.GhostScript_FullFileName = IO.Path.Combine(_root, "gsdll64.dll")
+
+End Sub
+</pre>
+</code-tab>

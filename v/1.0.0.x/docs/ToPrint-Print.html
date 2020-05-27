@@ -1,0 +1,59 @@
+﻿This method is used to print a pdf file or content.
+<br />
+<br />
+<co type="warning">
+    First conversion may take a while, because the unmanaged C Libraries will be waited to be loaded.
+</co>
+
+<st>Definition</st>
+<co type="light">
+    <small><b>Namespace : </b>Skycon.Pdf.ToPrint</small>
+</co>
+<code-tab>
+    <pre lang="c#">
+        public static void Print(byte() PdfData, string DocumentName = null, int16 Copies, int32 xDpi = 200, int32 yDpi = 200)
+
+        public static void Print(byte() PdfData, string PrinterName, string DocumentName = null, int16 Copies, int32 xDpi = 200, int32 yDpi = 200)
+</pre>
+    <pre lang="vb">
+        Public Shared Sub Print(PdfData As Byte(), DocumentName As String = Nothing, Copies As Short = 1, xDpi As Integer = 200, yDpi As Integer = 200)
+
+        Public Shared Sub Print(PdfData As Byte(), PrinterName As String, DocumentName As String = Nothing, Copies As Short = 1, xDpi As Integer = 200, yDpi As Integer = 200)
+    </pre>
+</code-tab>
+
+<st>Parameters</st>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Parameters</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><b>PdfData</b></td>
+            <td>is the content to be printed.</td>
+        </tr>
+        <tr>
+            <td><b>DocumentName</b></td>
+            <td>is the name of the document printed in the spool.</td>
+        </tr>
+        <tr>
+            <td><b>PrinterName</b></td>
+            <td>is optional. is the name of the printer to be used for printing. Default value is the default-printer of the OS.</td>
+        </tr>
+        <tr>
+            <td><b>xDpi, yDpi</b></td>
+            <td>is optional. is the unit (dot per inch) of resolution for printing operation.</td>
+        </tr>
+    </table>
+</div>
+
+
+<st>Examples</st>
+<include src="$/EXM/ToPrint-Print.html" />
+
+<br />
+<br />
+<include src="$/EXM/ToPrint-PrintAsync.html" />

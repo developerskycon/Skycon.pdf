@@ -1,0 +1,53 @@
+﻿Following section demonstrates how to convert and save the image from pdf document in tasks as asynchronously.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using System.Threading.Tasks;
+using Skycon.Pdf;
+
+void main(){
+
+    void fn(string taskId)
+    {
+        var pdfData = "byte-array data of a pdf document.";
+
+        //The image of the first page of the pdf document is being saved.
+        using (var _image = ToImage.Convert(pdfData).FirstOrDefault) {
+            _image.Save($"image-{taskId}.jpeg", Drawing.Imaging.ImageFormat.Jpeg);
+        }
+    };
+
+    var tasks = new List<Task>();
+    for (int n = 1; n <= 50; n++)
+    {
+        string i = n.ToString();
+        tasks.Add(Task.Factory.StartNew(() => fn(i)));
+    }
+    Task.WaitAll(tasks.ToArray());
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports System.Threading.Tasks
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim fn = Sub(taskId As String)
+                Dim pdfData = "byte-array data of a pdf document."
+
+                'The image of the first page of the pdf document is being saved.
+                Using _image = ToImage.Convert(pdfData).FirstOrDefault
+                    _image.Save($"image-{taskId}.jpeg", Drawing.Imaging.ImageFormat.Jpeg)
+                End Using
+            End Sub
+
+    Dim tasks As New List(Of Task)
+    For n = 1 To 50
+        Dim i = n.ToString
+        tasks.Add(Task.Factory.StartNew(Sub() fn(i)))
+    Next
+    Task.WaitAll(tasks.ToArray())
+End Sub
+</pre>
+</code-tab>

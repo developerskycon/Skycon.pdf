@@ -1,0 +1,74 @@
+﻿Following section demonstrates how to use pdf conversion in tasks as asynchronously.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using System.Threading.Tasks;
+using Skycon.Pdf;
+
+void main(){
+
+    var _html = "html-text or html-file or url";
+
+    void fn(string taskId)
+    {
+        var cfg = new ToPdfConfig();
+        cfg.Page = _html;
+        cfg.SetPaperSize(Drawing.Printing.PaperKind.A4);
+        cfg.Web.Background = true;
+        cfg.Web.EnableJavascript = true;
+        cfg.Web.LoadImages = true;
+        cfg.IsLandscape = true;
+
+        var pdfData = ToPdf.Convert(cfg);
+
+        using (var fs = new FileStream($"{_html}-{taskId}.pdf", FileMode.Create))
+        {
+            fs.Write(pdfData, 0, pdfData.Length);
+            fs.Close();
+        }
+    };
+
+    var tasks = new List<Task>();
+    for (int n = 1; n <= 50; n++)
+    {
+        string i = n.ToString();
+        tasks.Add(Task.Factory.StartNew(() => fn(i)));
+    }
+    Task.WaitAll(tasks.ToArray());
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports System.Threading.Tasks
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim _html = "html-text or html-file or url"
+
+    Dim fn = Sub(taskId As String)
+                Dim cfg As New ToPdfConfig
+                    cfg.Page = _html
+                    cfg.SetPaperSize(Drawing.Printing.PaperKind.A4)
+                    cfg.Web.Background = True
+                    cfg.Web.EnableJavascript = True
+                    cfg.Web.LoadImages = True
+                    cfg.IsLandscape = True
+
+                Dim pdfData = ToPdf.Convert(cfg)
+
+                Using fs = New FileStream($"{_html}-{taskId}.pdf"), FileMode.Create)
+                    fs.Write(pdfData, 0, pdfData.Length)
+                    fs.Close()
+                End Using
+            End Sub
+
+    Dim tasks As New List(Of Task)
+    For n = 1 To 50
+        Dim i = n.ToString
+        tasks.Add(Task.Factory.StartNew(Sub() fn(i)))
+    Next
+    Task.WaitAll(tasks.ToArray())
+End Sub
+</pre>
+</code-tab>

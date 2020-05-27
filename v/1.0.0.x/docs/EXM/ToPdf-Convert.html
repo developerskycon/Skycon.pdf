@@ -1,0 +1,51 @@
+﻿Following section demonstrates how to convert a html file or url into pdf.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using Skycon.Pdf;
+
+void main(){
+
+    var _html = "html-text or html-file or url";
+
+    var cfg = new ToPdfConfig();
+        cfg.Page = _html;
+        cfg.Web.Background = true;
+        cfg.Web.EnableJavascript = true;
+        cfg.Web.LoadImages = true;
+        cfg.IsLandscape = true;
+
+    var pdfData = ToPdf.Convert(cfg);
+
+    using (var fs = new FileStream($"{_html}.pdf"), FileMode.Create) ) {
+        fs.Write(pdfData, 0, pdfData.Length);
+        fs.Close();
+    }
+
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports Skycon.Pdf
+
+Sub main()
+
+   Dim _html = "html-text or html-file or url"
+
+    Dim cfg = New ToPdfConfig()
+        cfg.Page = _html
+        cfg.Web.Background = True
+        cfg.Web.EnableJavascript = True
+        cfg.Web.LoadImages = True
+        cfg.IsLandscape = True
+
+    Dim pdfData = ToPdf.Convert(cfg)
+
+    Using fs = New FileStream($"{_html}.pdf"), FileMode.Create)
+        fs.Write(pdfData, 0, pdfData.Length)
+        fs.Close()
+    End Using
+
+End Sub
+</pre>
+</code-tab>

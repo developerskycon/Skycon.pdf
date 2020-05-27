@@ -1,0 +1,39 @@
+﻿Following section demonstrates how to setting up the paths as automatically.
+    <code-tab>
+        <pre lang="c#">
+using System;
+using Skycon.Pdf;
+
+void main(){
+
+    var _root = IO.Path.GetDirectoryName(Reflection.Assembly.GetExecutingAssembly().Location);
+
+    // WorkingDirectory = is the path for working on temp files
+    Common.WorkingDirectory = _root;
+
+    // C libraries are automatically found in 32bit or 64bit.
+    // for "wkhtmltopdf" and "ghstscript"
+    Common.WkHtmlToPdf_SearchIn( _root );
+    Common.GhostScript_SearchIn( _root );
+
+}
+    </pre>
+        <pre lang="vb">
+Imports System
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim _root = IO.Path.GetDirectoryName(Reflection.Assembly.GetExecutingAssembly().Location)
+
+    ' WorkingDirectory = is the path for working on temp files
+    Common.WorkingDirectory = _root
+
+    ' C libraries are automatically found in 32bit or 64bit.
+    ' for "wkhtmltopdf" and "ghstscript"
+    Common.WkHtmlToPdf_SearchIn( _root )
+    Common.GhostScript_SearchIn( _root )
+
+End Sub
+</pre>
+    </code-tab>

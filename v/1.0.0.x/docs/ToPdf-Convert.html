@@ -1,0 +1,78 @@
+﻿This method is used to convert a html file or content, into the pdf document.
+<br />
+<br />
+<co type="warning">
+    First conversion may take a while, because the unmanaged C Libraries will be waited to be loaded.
+</co>
+
+<st>Definition</st>
+<co type="light">
+    <small><b>Namespace : </b>Skycon.Pdf.ToPdf</small>
+</co>
+<code-tab>
+    <pre lang="c#">
+        public static byte() Convert(string Html, string EventId = Nothing, bool DontThrowEvent = false)
+
+        public static byte() Convert(string Html, ToPdfConfig config, string EventId = Nothing, bool DontThrowEvent = false)
+
+        public static byte() Convert(byte() Html, ToPdfConfig config, string EventId = Nothing, bool DontThrowEvent = false)
+
+        public static byte() Convert(ToPdfConfig config, string EventId = Nothing, bool DontThrowEvent = false)
+</pre>
+    <pre lang="vb">
+        Public Shared Function Convert(ByVal Html As String, EventId As String = Nothing, DontThrowEvent As Boolean = False) As Byte()
+
+        Public Shared Function Convert(ByVal Html As String, ByVal config As ToPdfConfig, EventId As String = Nothing, DontThrowEvent As Boolean = False) As Byte()
+
+        Public Shared Function Convert(ByVal Html As Byte(), ByVal config As ToPdfConfig, EventId As String = Nothing, DontThrowEvent As Boolean = False) As Byte()
+
+        Public Shared Function Convert(ByVal config As ToPdfConfig, EventId As String = Nothing, DontThrowEvent As Boolean = False) As Byte()
+    </pre>
+</code-tab>
+
+<st>Parameters</st>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Parameters</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tr>
+            <td><b>Html</b></td>
+            <td>If content of a html document in memory, wants to be converted to pdf then this parameter is used.</td>
+        </tr>
+        <tr>
+            <td><b>config</b></td>
+            <td>
+                is used for setting up to convert operation.
+                <br />
+
+                <co type="warning">
+                    Please refer to <a href="##API--ToPdf-Config">PdfConfig</a> for further information about configuration.
+                </co>
+            </td>
+        </tr>
+        <tr>
+            <td><b>EventId</b></td>
+            <td>is optional. This parameter is used for callback events. If this parameter is leave nothing then it is accepted as Now.Ticks</td>
+        </tr>
+        <tr>
+            <td><b>DontThrowEvent</b></td>
+            <td>is optional. If events are not wanted to be thrown; must specify <b>false</b>. Otherwise parameter value is <b>true</b> by default.</td>
+        </tr>
+    </table>
+</div>
+
+
+<st>Examples</st>
+<include src="$/EXM/ToPdf-Convert.html" />
+
+<br />
+<br />
+<include src="$/EXM/ToPdf-ConvertAsync.html" />
+
+<br />
+<br />
+<include src="$/EXM/ToPdf-Events.html" />

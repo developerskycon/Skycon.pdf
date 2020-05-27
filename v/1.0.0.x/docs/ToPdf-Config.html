@@ -1,0 +1,140 @@
+﻿<k>ToPdfConfig</k> is used for PDF convertions. All settings are shown below.
+
+<st>Definition</st>
+<co type="light">
+    <small><b>Namespace : </b>Skycon.Pdf</small>
+</co>
+<code-tab>
+    <pre lang="c#">
+		public Class ToPdfConfig
+	</pre>
+    <pre lang="vb">
+		Public Class ToPdfConfig
+	</pre>
+</code-tab>
+
+<st>Settings</st>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <tr class="bg-dark text-white"><th colspan="3">General</th></tr>
+        <tr class="bg-dark text-white"><td>Name</td><td width="150">Type</td><td>Description</td></tr>
+        <tr><td>DocumentTitle	</td><td>String</td><td>The title of the PDF document.</td></tr>
+        <tr><td>Resolution      </td><td>String</td><td>Deprecated, has no effect.</td></tr>
+        <tr><td>Collate         </td><td>Boolean</td><td>Should the copies be collated?</td></tr>
+        <tr><td>Outline         </td><td>Boolean</td><td>Should a outline (table of content in the sidebar) be generated and put into the PDF? Must be either "true" or false".</td></tr>
+        <tr><td>UseCompression  </td><td>Boolean</td><td>Should we use loss less compression when creating the pdf file?</td></tr>
+        <tr><td>Output          </td><td>String</td><td>The path of the output file, if "-" output is sent to stdout, if empty the output is stored in a buffer.</td></tr>
+        <tr><td>DumpOutline     </td><td>String</td><td>If not set to the empty string a XML representation of the outline is dumped to this file.</td></tr>
+        <tr><td>CookiePath      </td><td>String</td><td>Path of file used to load and store cookies.</td></tr>
+        <tr><td>DPI             </td><td>Long</td><td>DPI used when printing, like "80".</td></tr>
+        <tr><td>PageOffset      </td><td>String</td><td>A number that is added to all page numbers when printing headers, footers and table of content</td></tr>
+        <tr><td>Copies          </td><td>Long</td><td>How many copies should we print?. e.g. "2".</td></tr>
+        <tr><td>OutlineDepth    </td><td>Long</td><td>The maximal depth of the outline, e.g. "4".</td></tr>
+        <tr><td>MaxImageDPI     </td><td>Long</td><td>The maximal DPI to use for images in the pdf document.</td></tr>
+        <tr><td>ImageQuality    </td><td>Long</td><td>The jpeg compression factor to use when producing the pdf document, e.g. "92".</td></tr>
+        <tr><td>Page            </td><td>String</td><td>The URL or path of the web page to convert, if "-" input is read from stdin.</td></tr>
+        <tr><td>TocXsl          </td><td>String</td><td>If not empty this object is a table of content object, "page" is ignored and this xsl style sheet is used to convert the outline XML into a table of content.</td></tr>
+        <tr><td>UseExternalLinks</td><td>Boolean</td><td>Should external links in the HTML document, be converted into external pdf links?</td></tr>
+        <tr><td>UseLocalLinks   </td><td>Boolean</td><td>Should internal links in the HTML document, be converted into pdf references?</td></tr>
+        <tr><td>ProduceForms    </td><td>Boolean</td><td>Should we turn HTML forms into PDF forms? Must be either "true" or false".</td></tr>
+        <tr><td>PagesCount      </td><td>Boolean</td><td>Should we count the pages of this document, in the counter used for TOC, headers and footers?</td></tr>
+        <tr><td>IncludeInOutline</td><td>Boolean</td><td>Should the sections from this document be included in the outline and table of content?</td></tr>
+        <!--
+                <tr><td>SetPageSettings()</td><td>PageSettings</td><td>[Landscape], [Margins] and [DPI] are adjusted to the values of the specified [PageSettings].</td></tr>
+                <tr><td>SetPaperSize()  </td><td>PaperSize</td><td>[PaperWidth] and [PaperHeight] are adjusted to the values of the specified [PaperSize]. [PaperSize] is set as null/Nothing.</td></tr>
+                <tr><td>SetPaperSize()  </td><td>PaperKind</td><td>[PaperWidth], [PaperHeight] and [PaperSize] are adjusted to the values of the specified [PaperKind].</td></tr>
+                <tr><td>SetMargin()     </td><td>String</td><td>Sets the margins in unit specified. (unit exm 1in, 5cm etc.)</td></tr>
+        -->
+
+        <tr><td>PaperSize       </td><td>String</td><td>The paper size of the output document, e.g. "A4".</td></tr>
+        <tr><td>PaperWidth      </td><td>String</td><td>The with of the output document, e.g. "4cm".</td></tr>
+        <tr><td>PaperHeight     </td><td>String</td><td>The height of the output document, e.g. "4cm".</td></tr>
+        <tr><td>Orientation     </td><td>String</td><td>The orientation of the output document, must be either "Landscape" or "Portrait". Default value is "Portrait".</td></tr>
+        <tr><td>ColorMode       </td><td>String</td><td>Should the output be printed in color or gray scale, must be either "Color" or "Grayscale". Default value is "Color".</td></tr>
+        <tr><td>IsGrayscale     </td><td>Boolean</td><td>Should the output be printed in color or gray scale. Default value is "Color".</td></tr>
+        <tr><td>MarginTop       </td><td>String</td><td>Size of the top margin. (exm 1in, 5cm etc.)</td></tr>
+        <tr><td>MarginRight     </td><td>String</td><td>Size of the right margin. (exm 1in, 5cm etc.)</td></tr>
+        <tr><td>MarginBottom    </td><td>String</td><td>Size of the bottom margin. (exm 1in, 5cm etc.)</td></tr>
+        <tr><td>MarginLeft      </td><td>String</td><td>Size of the left margin. (exm 60, 1in, 5cm etc.)</td></tr>
+
+        <tr><td>Toc         </td><td><span class="bg-warning text-dark p-1">ToPdfConfig_Toc</span></td><td>Table of content configs.</td></tr>
+        <tr><td>Web         </td><td><span class="bg-warning text-dark p-1">ToPdfConfig_Web</span></td><td>Web page specific configs.</td></tr>
+        <tr><td>Load        </td><td><span class="bg-warning text-dark p-1">ToPdfConfig_Load</span></td><td>Object loading configs.</td></tr>
+        <tr><td>Header      </td><td><span class="bg-warning text-dark p-1">ToPdfConfig_HeaderFooter</span></td><td>Header configs.</td></tr>
+        <tr><td>Footer      </td><td><span class="bg-warning text-dark p-1">ToPdfConfig_HeaderFooter</span></td><td>Footer configs.</td></tr>
+    </table>
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <tr class="bg-dark text-white"><th colspan="3"><b class="bg-warning text-dark p-1">ToPdfConfig_Toc</b> - Table of content configs.</th></tr>
+        <tr class="bg-dark text-white"><td>Name</td><td width="150">Type</td><td>Description</td></tr>
+        <tr><td>UseDottedLines  </td><td>Boolean</td><td>Should we use a dotted line when creating a table of content?</td></tr>
+        <tr><td>CaptionText     </td><td>String</td><td>The caption to use when creating a table of content.</td></tr>
+        <tr><td>ForwardLinks    </td><td>Boolean</td><td>Should we create links from the table of content into the actual content?.</td></tr>
+        <tr><td>BackLinks       </td><td>Boolean</td><td>Should we link back from the content to this table of content.</td></tr>
+        <tr><td>FontScale       </td><td>Single</td><td>How much should we scale down the font for every toc level? E.g. "0.8".</td></tr>
+        <tr><td>Indentation     </td><td>String</td><td>The indentation used for every table of content level, e.g. "2em".</td></tr>
+    </table>
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <tr class="bg-dark text-white"><th colspan="3"><b class="bg-warning text-dark p-1">ToPdfConfig_Web</b> - Web page specific configs.</th></tr>
+        <tr class="bg-dark text-white"><td>Name</td><td width="150">Type</td><td>Description</td></tr>
+        <tr><td>Background                  </td><td>Boolean</td><td>Should we print the background?</td></tr>
+        <tr><td>LoadImages                  </td><td>Boolean</td><td>Should we load images?</td></tr>
+        <tr><td>EnableIntelligentShrinking  </td><td>Boolean</td><td>Should we enable intelligent shrinkng to fit more content on one page? Has no effect for wkhtmltoimage.</td></tr>
+        <tr><td>EnableJavascript            </td><td>Boolean</td><td>Should we enable javascript?</td></tr>
+        <tr><td>MinimumFontSize             </td><td>Long</td><td>The minimum font size allowed. E.g. "9"</td></tr>
+        <tr><td>PrintMediaType              </td><td>Boolean</td><td>Should the content be printed using the print media type instead of the screen media type. Has no effect for wkhtmltoimage.</td></tr>
+        <tr><td>DefaultEncoding             </td><td>String</td><td>What encoding should we guess content is using if they do not specify it properly? E.g. "utf-8".</td></tr>
+        <tr><td>UserStylesheet              </td><td>String</td><td>Url er path to a user specified style sheet.</td></tr>
+        <tr><td>EnablePlugins               </td><td>Boolean</td><td>Should we enable NS plugins. Enabling this will have limited success.</td></tr>
+    </table>
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <tr class="bg-dark text-white"><th colspan="3"><b class="bg-warning text-dark p-1">ToPdfConfig_Load</b> - Object loading configs.</th></tr>
+        <tr class="bg-dark text-white"><td>Name</td><td width="150">Type</td><td>Description</td></tr>
+        <tr><td>UserName               </td><td>String</td><td>The user name to use when loging into a website.</td></tr>
+        <tr><td>Password               </td><td>String</td><td>The password to used when logging into a website.</td></tr>
+        <tr><td>JsDelay                </td><td>Long</td><td>The mount of time in milliseconds to wait after a page has done loading until it is actually printed. E.g. "1200". We will wait this amount of time or until, javascript calls window.print().</td></tr>
+        <tr><td>ZoomFactor             </td><td>Decimal</td><td>How much should we zoom in on the content? E.g. "2.2"</td></tr>
+        <tr><td>RepeatCustomHeaders    </td><td>Boolean</td><td>Should the custom headers be sent all elements loaded instead of only the main page?</td></tr>
+        <tr><td>BlockLocalFileAccess   </td><td>Boolean</td><td>Disallow local and piped files to access other local files.</td></tr>
+        <tr><td>StopSlowScript         </td><td>Boolean</td><td>Stop slow running javascript.</td></tr>
+        <tr><td>DebugJavascript        </td><td>Boolean</td><td>Forward javascript warnings and errors to the warning callback.</td></tr>
+        <tr><td>ErrorHandling          </td><td>String</td><td>How should we handle obejcts that fail to load, must be either "ignore", "abort" or "skip"</td></tr>
+        <tr><td>Proxy                  </td><td>String</td><td>String describing what proxy to use when loading the object.</td></tr>
+    </table>
+    <br />
+    <br />
+    <table class="table table-bordered table-striped">
+        <tr class="bg-dark text-white"><th colspan="3"><b class="bg-warning text-dark p-1">ToPdfConfig_HeaderFooter</b> - Header/Footer configs.</th></tr>
+        <tr class="bg-dark text-white"><td>Name</td><td width="150">Type</td><td>Description</td></tr>
+        <tr><td>FontSize        </td><td>Long</td><td>The font size in point to use for the header, e.g. "13"</td></tr>
+        <tr><td>FontName        </td><td>String</td><td>The name of the font to use for the header. e.g. "times"</td></tr>
+        <tr>
+            <td>LeftText, CenterText, RightText</td>
+            <td>String</td>
+            <td>
+                The text to print in the [LEFT|CENTER|RIGHT] part of the header, Following replaces occur in each of texts:
+                <p>  * [page]       Replaced by the number of the pages currently being printed</p>
+                <p>  * [frompage]   Replaced by the number of the first page to be printed</p>
+                <p>  * [topage]     Replaced by the number of the last page to be printed</p>
+                <p>  * [webpage]    Replaced by the URL of the page being printed</p>
+                <p>  * [section]    Replaced by the name of the current section</p>
+                <p>  * [subsection] Replaced by the name of the current subsection</p>
+                <p>  * [date]       Replaced by the current date in system local format</p>
+                <p>  * [time]       Replaced by the current time in system local format</p>
+
+            </td>
+        </tr>
+        <tr><td>Line            </td><td>Boolean</td><td>Whether a line should be printed (under the header) or (above the footer).</td></tr>
+        <tr><td>Spacing         </td><td>Decimal</td><td>The amount in point of space to put between the header and the content, e.g. "1.8". Be aware that if this is too large the header will be printed outside the pdf document. This can be corrected with the margin.top setting.</td></tr>
+        <tr><td>HtmlUrl         </td><td>String</td><td>Url for a HTML document to use for the header.</td></tr>
+        <!--
+            <tr><td>SetFont         </td><td></td><td>[FontSize] and [FontName] are adjusted to the values of the specified [Font].</td></tr>
+        -->
+
+    </table>
+</div>

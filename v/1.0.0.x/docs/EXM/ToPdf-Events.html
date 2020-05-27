@@ -1,0 +1,120 @@
+﻿Following section demonstrates how to listen events of the pdf conversion.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using System.Threading.Tasks;
+using Skycon.Pdf;
+
+public void main()
+{
+    ToPdf.Begin += Pdf_Begin;
+    ToPdf.PhaseBegin += Pdf_PhaseBegin;
+    ToPdf.PhaseProgress += Pdf_PhaseProgress;
+    ToPdf.Finished += Pdf_Finished;
+    ToPdf.Warning += Pdf_Warning;
+    ToPdf.Error += Pdf_Error;
+
+    var _html = "html-text or html-file or url";
+
+    var cfg = new ToPdfConfig();
+        cfg.Page = _html;
+        cfg.Web.Background = true;
+        cfg.Web.EnableJavascript = true;
+        cfg.Web.LoadImages = true;
+        cfg.IsLandscape = true;
+
+    var pdfData1 = ToPdf.Convert(cfg);
+
+    // You can specify [DontThrowEvent] and [EventId] for a conversion.
+    var pdfData2 = ToPdf.Convert(cfg, EventId: "JOB-01", DontThrowEvent: true);
+}
+
+
+#region "ToPDF Events"
+    private void Pdf_Begin(ToPdfEventArgs e)
+    {
+        Console.WriteLine($"{e.Id}  → Begin");
+        Console.WriteLine($"        → PhaseCount :: {e.TotalPhaseCount}");
+    }
+    private void Pdf_PhaseBegin(ToPdfEventArgs e)
+    {
+        Console.WriteLine($"{e.Id}  → PhaseBegin");
+        Console.WriteLine($"        → No :: {e.CurrentPhase}/{e.TotalPhaseCount}");
+        Console.WriteLine($"        → Description :: {e.CurrentPhaseDescription}");
+    }
+    private void Pdf_PhaseProgress(ToPdfEventArgs e)
+    {
+        Console.WriteLine($"{e.Id}  → Progress :: {e.Progress}%");
+    }
+    private void Pdf_Warning(ToPdfEventArgs e, string Message)
+    {
+        Console.WriteLine($"{e.Id}  → Warning :: {Message}");
+    }
+    private void Pdf_Error(ToPdfEventArgs e, string Message)
+    {
+        Console.WriteLine($"{e.Id}  → Error :: {Message}");
+    }
+    private void Pdf_Finished(ToPdfEventArgs e, bool success)
+    {
+        Console.WriteLine($"{e.Id}  → Finished");
+        Console.WriteLine($"        → HasError :: {(success ? "No" : "Yes")}");
+    }
+#endregion
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports System.Threading.Tasks
+Imports Skycon.Pdf
+
+Sub main()
+
+    AddHandler ToPdf.Begin, AddressOf Pdf_Begin
+    AddHandler ToPdf.PhaseBegin, AddressOf Pdf_PhaseBegin
+    AddHandler ToPdf.PhaseProgress, AddressOf Pdf_PhaseProgress
+    AddHandler ToPdf.Finished, AddressOf Pdf_Finished
+    AddHandler ToPdf.Warning, AddressOf Pdf_Warning
+    AddHandler ToPdf.Error, AddressOf Pdf_Error
+
+   Dim _html = "html-text or html-file or url"
+
+    Dim cfg = New ToPdfConfig()
+        cfg.Page = _html
+        cfg.Web.Background = True
+        cfg.Web.EnableJavascript = True
+        cfg.Web.LoadImages = True
+        cfg.IsLandscape = True
+
+    Dim pdfData1 = ToPdf.Convert(cfg)
+
+    'You can specify [DontThrowEvent] and [EventId] for a conversion.
+    Dim pdfData2 = ToPdf.Convert(cfg, EventId:="JOB-01", DontThrowEvent:=True)
+End Sub
+
+
+#Region "ToPDF Events"
+    Private Sub Pdf_Begin(e As ToPdfEventArgs)
+        Console.WriteLine($"{e.Id}  → Begin")
+        Console.WriteLine($"        → PhaseCount :: {e.TotalPhaseCount}")
+    End Sub
+    Private Sub Pdf_PhaseBegin(e As ToPdfEventArgs)
+        Console.WriteLine($"{e.Id}  → PhaseBegin")
+        Console.WriteLine($"        → No :: {e.CurrentPhase}/{e.TotalPhaseCount}")
+        Console.WriteLine($"        → Description :: {e.CurrentPhaseDescription}")
+    End Sub
+    Private Sub Pdf_PhaseProgress(e As ToPdfEventArgs)
+        Console.WriteLine($"{e.Id}  → Progress :: {e.Progress}%")
+    End Sub
+    Private Sub Pdf_Warning(e As ToPdfEventArgs, Message As String)
+        Console.WriteLine($"{e.Id}  → Warning :: {Message}")
+    End Sub
+    Private Sub Pdf_Error(e As ToPdfEventArgs, Message As String)
+        Console.WriteLine($"{e.Id}  → Error :: {Message}")
+    End Sub
+    Private Sub Pdf_Finished(e As ToPdfEventArgs, success As Boolean)
+        Console.WriteLine($"{e.Id}  → Finished")
+        Console.WriteLine($"        → HasError :: {If(success, "No", "Yes")}")
+    End Sub
+#End Region
+
+</pre>
+</code-tab>

@@ -1,0 +1,72 @@
+﻿Following section demonstrates how to convert a html-statement into pdf.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using Skycon.Pdf;
+
+void main(){
+
+    var _html= @"&lt;html>
+                    &lt;!--PDF-DATA
+                        &lt;cfg name=""orientation"">landscape</cfg>
+                        &lt;cfg name=""web.background"">true</cfg>
+                        &lt;cfg name=""web.enableJavascript"">true</cfg>
+                        &lt;cfg name=""web.loadImages"">true</cfg>
+                        &lt;cfg name=""header.line"">true</cfg>
+                        &lt;cfg name=""header.centerText"">HEADER TEXT</cfg>
+                        &lt;cfg name=""footer.line"">true</cfg>
+                        &lt;cfg name=""footer.leftText"">FOOTER TEXT</cfg>
+                        &lt;cfg name=""footer.rightText"">Page [page]/[toPage]</cfg>
+                        &lt;cfg name=""footer.fontSize"">14</cfg>
+                    PDF-DATA-->
+
+                    &lt;body>
+                        &lt;br/>&lt;br/>&lt;br/>
+                        &lt;h1>
+                            &lt;span style=""font-size:15pt;font-weight:bold;"">Font-Size 15 - (T:15)&lt;/span>
+                        &lt;/h1>
+                    &lt;/body>
+                &lt;/html>";
+
+    // config is generated from &lt;!--PDF-DATA ... PDF-DATA--> block in html.
+    cfg = ToPdf.CreateConfig(_html);
+
+    var pdfData = ToPdf.Convert(_html);
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim _html = &lt;html>
+                    &lt;!--PDF-DATA
+                        &lt;cfg name="orientation">landscape</cfg>
+                        &lt;cfg name="web.background">true</cfg>
+                        &lt;cfg name="web.enableJavascript">true</cfg>
+                        &lt;cfg name="web.loadImages">true</cfg>
+                        &lt;cfg name="header.line">true</cfg>
+                        &lt;cfg name="header.centerText">HEADER TEXT</cfg>
+                        &lt;cfg name="footer.line">true</cfg>
+                        &lt;cfg name="footer.leftText">FOOTER TEXT</cfg>
+                        &lt;cfg name="footer.rightText">Page [page]/[toPage]</cfg>
+                        &lt;cfg name="footer.fontSize">14</cfg>
+                    PDF-DATA-->
+
+                    &lt;body>
+                        &lt;br/>&lt;br/>&lt;br/>
+                        &lt;h1>
+                            &lt;span style="font-size:15pt;font-weight:bold;">Font-Size 15 - (T:15)&lt;/span>
+                        &lt;/h1>
+                    &lt;/body>
+                &lt;/html>.ToString()
+
+    ' config is generated from &lt;!--PDF-DATA ... PDF-DATA--> block in html.
+    Dim cfg = ToPdf.CreateConfig(_html)
+
+    Dim pdfData = ToPdf.Convert(_html)
+
+End Sub
+</pre>
+</code-tab>

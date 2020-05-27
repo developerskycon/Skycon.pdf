@@ -1,0 +1,49 @@
+﻿Following section demonstrates how to convert a html-statement into pdf.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using Skycon.Pdf;
+
+void main(){
+
+    var _html = "&lt;Html>html-content&lt;/Html>";
+
+    var cfg = new ToPdfConfig();
+        cfg.Web.Background = true;
+        cfg.Web.EnableJavascript = true;
+        cfg.Web.LoadImages = true;
+        cfg.IsLandscape = true;
+
+    var pdfData = ToPdf.Convert(_html, cfg);
+
+    using (var fs = new FileStream($"{_html}.pdf"), FileMode.Create) ) {
+        fs.Write(pdfData, 0, pdfData.Length);
+        fs.Close();
+    }
+
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports Skycon.Pdf
+
+Sub main()
+
+   Dim _html = "&lt;Html>html-content&lt;/Html>"
+
+    Dim cfg = New ToPdfConfig()
+        cfg.Web.Background = True
+        cfg.Web.EnableJavascript = True
+        cfg.Web.LoadImages = True
+        cfg.IsLandscape = True
+
+    Dim pdfData = ToPdf.Convert(_html, cfg)
+
+    Using fs = New FileStream($"{_html}.pdf"), FileMode.Create)
+        fs.Write(pdfData, 0, pdfData.Length)
+        fs.Close()
+    End Using
+
+End Sub
+</pre>
+</code-tab>

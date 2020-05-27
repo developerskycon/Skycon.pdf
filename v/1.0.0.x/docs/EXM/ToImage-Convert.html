@@ -1,0 +1,32 @@
+﻿Following section demonstrates how to convert and save the image from pdf document.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using Skycon.Pdf;
+
+void main(){
+
+    var pdfData = "byte-array data of a pdf document.";
+
+    //The image of the first page of the pdf document is being saved.
+    using (var _image = ToImage.Convert(pdfData).FirstOrDefault) {
+        _image.Save("image.jpeg", Drawing.Imaging.ImageFormat.Jpeg);
+    }
+}
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports Skycon.Pdf
+
+Sub main()
+
+    Dim pdfData = "byte-array data of a pdf document."
+
+    'The image of the first page of the pdf document is being saved.
+    Using _image = ToImage.Convert(pdfData).FirstOrDefault
+        _image.Save("image.jpeg", Drawing.Imaging.ImageFormat.Jpeg)
+    End Using
+
+End Sub
+</pre>
+</code-tab>

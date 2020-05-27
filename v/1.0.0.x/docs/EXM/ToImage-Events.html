@@ -1,0 +1,79 @@
+﻿Following section demonstrates how to listen events of the image conversion.
+<code-tab>
+    <pre lang="c#">
+using System.IO;
+using System.Threading.Tasks;
+using Skycon.Pdf;
+
+public void main()
+{
+    ToImage.Begin += Image_Begin;
+    ToImage.PhaseBegin += Image_Finished;
+    ToImage.PhaseProgress += Image_Error;
+
+    var pdfData = "byte-array data of a pdf document.";
+
+    //The image of the first page of the pdf document is being saved.
+    using (var _image = ToImage.Convert(pdfData).FirstOrDefault) {
+        _image.Save("image.jpeg", Drawing.Imaging.ImageFormat.Jpeg);
+    }
+
+    // You can specify [DontThrowEvent] and [EventId] for a conversion.
+    var _images = ToImage.Convert(pdfData, EventId: "JOB-01", DontThrowEvent: true);
+}
+
+
+#region "ToImage Events"
+    private void Image_Begin(string EventId)
+    {
+        Console.WriteLine($"{EventId}  → Begin");
+    }
+    private void Image_Error(string EventId, string Message)
+    {
+        Console.WriteLine($"{EventId}  → Error :: {Message}");
+    }
+    private void Image_Finished(string EventId, bool success)
+    {
+        Console.WriteLine($"{EventId}  → Finished");
+        Console.WriteLine($"           → HasError :: {(success ? "No" : "Yes")}");
+    }
+#endregion
+</pre>
+    <pre lang="vb">
+Imports System.IO
+Imports System.Threading.Tasks
+Imports Skycon.Pdf
+
+Sub main()
+
+    AddHandler ToImage.Begin, AddressOf Image_Begin
+    AddHandler ToImage.Finished, AddressOf Image_Finished
+    AddHandler ToImage.Error, AddressOf Image_Error
+
+    Dim pdfData = "byte-array data of a pdf document."
+
+    'The image of the first page of the pdf document is being saved.
+    Using _image = ToImage.Convert(pdfData).FirstOrDefault
+        _image.Save("image.jpeg", Drawing.Imaging.ImageFormat.Jpeg)
+    End Using
+
+    'You can specify [DontThrowEvent] and [EventId] for a conversion.
+    Dim _images = ToImage.Convert(pdfData, EventId:="JOB-01", DontThrowEvent:=True)
+End Sub
+
+
+#Region "ToImage Events"
+    Private Sub Image_Begin(ByVal EventId As String)
+        Console.WriteLine($"{EventId}  → Begin")
+    End Sub
+    Private Sub Image_Error(ByVal EventId As String, Message As String)
+        Console.WriteLine($"{EventId}  → Error :: {Message}")
+    End Sub
+    Private Sub Image_Finished(ByVal EventId As String, success As Boolean)
+        Console.WriteLine($"{EventId}  → Finished")
+        Console.WriteLine($"           → HasError :: {If(success, "No", "Yes")}")
+    End Sub
+#End Region
+
+</pre>
+</code-tab>
